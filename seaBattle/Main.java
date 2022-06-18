@@ -8,7 +8,11 @@ import java.util.*;
 public class Main {
 	 public static void main(String[] args) {
 	
-	Fleet f = new Fleet();
-	f.shuf();
+	Buttle b = new Buttle ();
+	b.buttle();
+	
+	
+	
+	
 	 }
 }

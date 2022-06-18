@@ -6,27 +6,41 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 public class Fleet {
 
 	String[][] sea = new String[13][13];
 
-	int ran = (int) (Math.random() * 10);
-	Random r = new Random(ran);
-	Ship oneQ = new Ship(1, false, false, "x");
-	Ship oneW = new Ship(2, false, false, "x");
-	Ship oneR = new Ship(3, false, false, "x");
-	Ship oneT = new Ship(4, false, false, "x");
+	Ship one1 = new Ship();
+	Ship one2 = new Ship();
+	Ship one3 = new Ship();
+	Ship one4 = new Ship();
+	Ship two1 = new Ship();
+	Ship two2 = new Ship();
+	Ship two3 = new Ship();
+	Ship three1 = new Ship();
+	Ship three2 = new Ship();
+	Ship four = new Ship();
+	Stack <Ship> stackShip = new Stack<Ship>();
+	
 	List<Ship> list = new ArrayList<Ship>();
 
-	public void shuf() {
-		list.add(oneQ);
-		list.add(oneW);
-		list.add(oneR);
-		list.add(oneT);
+	public List shuf() {
+		
+		stackShip.push(four);
+		stackShip.push(three1);
+		stackShip.push(three2);
+		stackShip.push(two1);
+		stackShip.push(two2);
+		stackShip.push(two3);
+		stackShip.push(one1);
+		stackShip.push(one2);
+		stackShip.push(one3);
+		stackShip.push(one4);
+		
 
-		Collections.shuffle(list, r);
-		System.out.println("After shuffling: " + list.toString());
+	
 // расстановка однопалубных кораблей.
 		for (int i = 0; i < 4;) {
 			int x = (int) (Math.random() * 10) + 1;
@@ -37,6 +51,12 @@ public class Fleet {
 					&& sea[x - 1][y + 1] == null && sea[x + 1][y - 1] == null) {
 				sea[x][y] = "*";
 				i++;
+				
+				Ship ship = stackShip.pop();
+				ship.setX(x);
+				ship.setY(y);
+				ship.setLengh(1);
+				list.add(ship);
 
 			}
 		}
@@ -56,6 +76,12 @@ public class Fleet {
 					sea[x][y]="*";
 					sea[x+1][y]="*";
 					i++;
+					Ship ship = stackShip.pop();
+					ship.setX(x);
+					ship.setY(y);
+					ship.setLengh(2);
+					ship.setLocation("V");
+					list.add(ship);
 				}
 				
 				
@@ -69,6 +95,12 @@ public class Fleet {
 				sea[x][y] = "*";
 				sea[x][y+1] = "*";
 				i++;
+				Ship ship = stackShip.pop();
+				ship.setX(x);
+				ship.setY(y);
+				ship.setLengh(2);
+				ship.setLocation("G");
+				list.add(ship);
 
 			}
 			}
@@ -92,6 +124,12 @@ public class Fleet {
 					sea[x+1][y]="*";
 					sea[x+2][y]="*";
 					i++;
+					Ship ship = stackShip.pop();
+					ship.setX(x);
+					ship.setY(y);
+					ship.setLengh(3);
+					ship.setLocation("V");
+					list.add(ship);
 				}
 				
 				
@@ -107,6 +145,12 @@ public class Fleet {
 				sea[x][y+1] = "*";
 				sea[x][y+2] = "*";
 				i++;
+				Ship ship = stackShip.pop();
+				ship.setX(x);
+				ship.setY(y);
+				ship.setLengh(3);
+				ship.setLocation("G");
+				list.add(ship);
 
 			}
 			}
@@ -131,6 +175,12 @@ public class Fleet {
 					sea[x+2][y]="*";
 					sea[x+3][y]="*";
 				l++;
+				Ship ship = stackShip.pop();
+				ship.setX(x);
+				ship.setY(y);
+				ship.setLengh(4);
+				ship.setLocation("V");
+				list.add(ship);
 				}
 				
 				
@@ -148,23 +198,32 @@ public class Fleet {
 				sea[x][y+2] = "*";
 				sea[x][y+3] = "*";
 				l++;
+				Ship ship = stackShip.pop();
+				ship.setX(x);
+				ship.setY(y);
+				ship.setLengh(4);
+				ship.setLocation("G");
+				list.add(ship);
 
 			}
 			}
 		}
 		
-		
-
+		System.out.println(list.toString());
+	
 		for (int i = 1; i < 11; i++) {
+		
 			for (int j = 1; j < 11; j++) {
+				
 				if (sea[i][j] == null) {
-					System.out.print(" ");
+					System.out.print("0");
 				} else {
 					System.out.print(sea[i][j]);
 				}
 			}
 			System.out.println();
 		}
+		return list;
 
 	}
 

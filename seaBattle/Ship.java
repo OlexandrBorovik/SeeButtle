@@ -3,16 +3,21 @@ package seaBattle;
 public class Ship {
 	
 	private int lengh;
-	private boolean dead;
-	private boolean wound;
-	private String location;
+	private int y ;
+	private int x;
+	private boolean dead = false;
+	private boolean wound = false;
+	private String location = "G";
 	public Ship() {
 		super();
 		// TODO Auto-generated constructor stub
+
 	}
-	public Ship(int lengh, boolean dead, boolean wound, String location) {
+	public Ship(int lengh, int y, int x, boolean dead, boolean wound, String location) {
 		super();
 		this.lengh = lengh;
+		this.y = y;
+		this.x = x;
 		this.dead = dead;
 		this.wound = wound;
 		this.location = location;
@@ -22,6 +27,18 @@ public class Ship {
 	}
 	public void setLengh(int lengh) {
 		this.lengh = lengh;
+	}
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
 	}
 	public boolean isDead() {
 		return dead;
@@ -43,7 +60,7 @@ public class Ship {
 	}
 	@Override
 	public String toString() {
-		return "Ship [lengh=" + lengh + ", dead=" + dead + ", wound=" + wound + ", location=" + location + "]";
+		return "Ship [lengh=" + lengh + ", x=" + x + ", y=" + y + ", dead=" + dead + ", wound=" + wound + ", location="
+				+ location + "]";
 	}
-
 }
