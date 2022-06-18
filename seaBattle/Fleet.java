@@ -41,7 +41,7 @@ public class Fleet {
 		
 
 	
-// СЂР°СЃСЃС‚Р°РЅРѕРІРєР° РѕРґРЅРѕРїР°Р»СѓР±РЅС‹С… РєРѕСЂР°Р±Р»РµР№.
+// расстановка однопалубных кораблей.
 		for (int i = 0; i < 4;) {
 			int x = (int) (Math.random() * 10) + 1;
 			int y = (int) (Math.random() * 10) + 1;
@@ -55,13 +55,17 @@ public class Fleet {
 				Ship ship = stackShip.pop();
 				ship.setX(x);
 				ship.setY(y);
-				ship.setLengh(1);
+				ship.setLenght(1);
+				
+				this.setXY(x, y, ship, ship.getLocation());
+				
 				list.add(ship);
+				
 
 			}
 		}
 		
-		// СЂР°СЃСЃС‚Р°РЅРѕРІРєР° РґРІСѓС…РїР°Р»СѓР±РЅС‹С… РєРѕСЂР°Р±Р»РµР№.		
+		// расстановка двухпалубных кораблей.		
 		
 		for (int i = 0; i < 3;) {
 			
@@ -79,8 +83,9 @@ public class Fleet {
 					Ship ship = stackShip.pop();
 					ship.setX(x);
 					ship.setY(y);
-					ship.setLengh(2);
+					ship.setLenght(2);
 					ship.setLocation("V");
+					this.setXY(x, y, ship, ship.getLocation());
 					list.add(ship);
 				}
 				
@@ -98,8 +103,9 @@ public class Fleet {
 				Ship ship = stackShip.pop();
 				ship.setX(x);
 				ship.setY(y);
-				ship.setLengh(2);
+				ship.setLenght(2);
 				ship.setLocation("G");
+				this.setXY(x, y, ship, ship.getLocation());
 				list.add(ship);
 
 			}
@@ -107,7 +113,7 @@ public class Fleet {
 
 			
 		}
-		// СЂР°СЃСЃС‚Р°РЅРѕРІРєР° С‚СЂРµС… РїР°Р»СѓР±РЅС‹С… РєРѕСЂР°Р±Р»РµР№.		
+		// расстановка трех палубных кораблей.		
 		
 		for (int i = 0; i < 2;) {
 			
@@ -127,8 +133,9 @@ public class Fleet {
 					Ship ship = stackShip.pop();
 					ship.setX(x);
 					ship.setY(y);
-					ship.setLengh(3);
+					ship.setLenght(3);
 					ship.setLocation("V");
+					this.setXY(x, y, ship, ship.getLocation());
 					list.add(ship);
 				}
 				
@@ -148,8 +155,9 @@ public class Fleet {
 				Ship ship = stackShip.pop();
 				ship.setX(x);
 				ship.setY(y);
-				ship.setLengh(3);
+				ship.setLenght(3);
 				ship.setLocation("G");
+				this.setXY(x, y, ship, ship.getLocation());
 				list.add(ship);
 
 			}
@@ -157,7 +165,7 @@ public class Fleet {
 
 			
 		}
-		// СЂР°СЃСЃС‚Р°РЅРѕРІРєР° 4РїР°Р»СѓР±РЅС‹С… РєРѕСЂР°Р±Р»РµР№.	
+		// расстановка 4палубных кораблей.	
 	    int l = 0;
 		while (l==0) {	
 			int location = (int) (Math.random()*2);
@@ -178,8 +186,9 @@ public class Fleet {
 				Ship ship = stackShip.pop();
 				ship.setX(x);
 				ship.setY(y);
-				ship.setLengh(4);
+				ship.setLenght(4);
 				ship.setLocation("V");
+				this.setXY(x, y, ship, ship.getLocation());
 				list.add(ship);
 				}
 				
@@ -201,8 +210,9 @@ public class Fleet {
 				Ship ship = stackShip.pop();
 				ship.setX(x);
 				ship.setY(y);
-				ship.setLengh(4);
+				ship.setLenght(4);
 				ship.setLocation("G");
+				this.setXY(x, y, ship, ship.getLocation());
 				list.add(ship);
 
 			}
@@ -226,5 +236,18 @@ public class Fleet {
 		return list;
 
 	}
-
-}
+	// добавление массива располажения палуб
+	public void setXY(int x, int y, Ship ship, String orientation) {
+		int [] a = ship.getAll();
+	if (orientation.equals("G")) {
+		for(int i = 0 ; i<ship.getLenght();i++) {
+			a[i]= (x*10)+y+i;
+			
+		
+	}
+	}else {
+			for(int i = 0 ; i<ship.getLenght();i++) {
+				a[i]= ((x+i)*10)+y;
+	}
+	}
+}}

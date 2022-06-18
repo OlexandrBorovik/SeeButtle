@@ -11,6 +11,8 @@ public class Buttle {
 	private List<Ship> com = c.shuf() ;
 	private List<Ship> pers;
 	private boolean game = true;
+
+	
 	Scanner sc = new Scanner(System.in);
 	
 	public void buttle () {
@@ -40,7 +42,7 @@ public class Buttle {
 		Ship ship = com.get(i);
 		String location = ship.getLocation();
 		if (location.equals("V")) {
-		for (int j = 0; j<ship.getLengh();j++ ) {
+		for (int j = 0; j<ship.getLenght();j++ ) {
 			if (ship.getX()==x && ship.getY()==y+j) {
 				System.out.println("popal");
 			}else {
@@ -50,7 +52,7 @@ public class Buttle {
 			
 		
 	}else {
-		for (int j = 0; j<ship.getLengh();j++ ) {
+		for (int j = 0; j<ship.getLenght();j++ ) {
 			if (ship.getX()==x+j && ship.getY()==y) {
 				System.out.println("popal");
 			}else {
@@ -60,4 +62,23 @@ public class Buttle {
 	}
 
 	}
-}}
+}
+	
+public void checkSea () {
+	String[][] sea = c.sea;
+	
+	for (int i =0; i<sea.length;i++) {
+		for (int j =0; j<sea.length;j++) {
+			
+			if (sea[i][j]!=null) {
+				game = true;
+			}else {
+				game = false;
+			}
+		}
+	}
+}
+
+
+
+}
